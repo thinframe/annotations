@@ -4,7 +4,7 @@ Class metadata via annotations for PHP applications.
 
 ##Installation:
 
-* via Composer: `"thinframe/applications":"dev-master"`
+* via Composer: `"thinframe/applications":"0.2.*"`
 
 
 ##Copyright
