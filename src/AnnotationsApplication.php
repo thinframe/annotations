@@ -1,7 +1,7 @@
 <?php
 
 /**
- * /src/ThinFrame/Annotations/AnnotationsApplication.php
+ * /src/AnnotationsApplication.php
  *
  * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
  * @license   MIT license (see the license file in the root directory)
@@ -11,6 +11,7 @@ namespace ThinFrame\Annotations;
 
 use ThinFrame\Annotations\DependencyInjection\TaggedHandlerCompilerPass;
 use ThinFrame\Applications\AbstractApplication;
+use ThinFrame\Applications\DependencyInjection\AwareDefinition;
 use ThinFrame\Applications\DependencyInjection\ContainerConfigurator;
 
 /**
@@ -31,6 +32,14 @@ class AnnotationsApplication extends AbstractApplication
     public function initializeConfigurator(ContainerConfigurator $configurator)
     {
         $configurator->addCompilerPass(new TaggedHandlerCompilerPass('thinframe.annotations.processor'));
+
+        $configurator->addAwareDefinition(
+            new AwareDefinition(
+                '\ThinFrame\Annotations\DependencyInjection\ProcessorAwareTrait',
+                'setProcessor',
+                'thinframe.annotations.processor'
+            )
+        );
     }
 
     /**

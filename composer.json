@@ -26,8 +26,8 @@
         "thinframe/applications": "dev-master"
     },
     "autoload": {
-        "psr-0": {
-            "": "src/"
+        "psr-4": {
+            "ThinFrame\\Annotations\\": "src/"
         }
     },
     "extra": {
