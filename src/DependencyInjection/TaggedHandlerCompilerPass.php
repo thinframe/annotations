@@ -3,7 +3,7 @@
 /**
  * /src/DependencyInjection/TaggedHandlerCompilerPass.php
  *
- * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
  * @license   MIT license (see the license file in the root directory)
  */
 
@@ -48,7 +48,7 @@ class TaggedHandlerCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         foreach ($container->findTaggedServiceIds(
-                     'thinframe.annotations.handler'
+                     'annotations.handler'
                  ) as $handlerServiceId => $options) {
             $container->getDefinition($this->processorServiceId)->addMethodCall(
                 'addHandler',

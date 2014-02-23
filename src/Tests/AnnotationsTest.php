@@ -1,9 +1,9 @@
 <?php
 
 /**
- * /src/ThinFrame/Annotations/Tests/AnnotationsTest.php
+ * src/Tests/AnnotationsTest.php
  *
- * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
  * @license   MIT license (see the license file in the root directory)
  */
 
@@ -44,7 +44,7 @@ class AnnotationsTest extends \PHPUnit_Framework_TestCase implements Annotations
         $app = new AnnotationsApplication();
 
         $this->assertTrue(
-            $app->getApplicationContainer()->get('thinframe.annotations.processor') instanceof Processor,
+            $app->make()->getContainer()->get('annotations.processor') instanceof Processor,
             'Services should be configured correctly'
         );
     }

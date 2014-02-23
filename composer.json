@@ -16,11 +16,11 @@
             "role": "Developer"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
-        "thinframe/foundation": "@stable",
-        "thinframe/applications": "@stable"
+        "thinframe/foundation": "dev-develop",
+        "thinframe/applications": "dev-develop"
     },
     "require-dev": {
         "phpunit/phpunit": "@stable"
