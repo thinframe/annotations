@@ -5,7 +5,7 @@
  * @license   MIT license (see the license file in the root directory)
  */
 
-namespace ThinFrame\Annotations\Tests\Samples;
+namespace ThinFrame\Annotations\Test\Sample;
 
 /**
  * SampleAnnotatedClass

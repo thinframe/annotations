@@ -5,13 +5,13 @@
  * @license   MIT license (see the license file in the root directory)
  */
 
-namespace ThinFrame\Annotations\Tests;
+namespace ThinFrame\Annotations\Test;
 
 use ThinFrame\Annotations\AnnotationsApplication;
 use ThinFrame\Annotations\AnnotationsHandlerInterface;
 use ThinFrame\Annotations\Collector;
 use ThinFrame\Annotations\Processor;
-use ThinFrame\Annotations\Tests\Samples\SampleAnnotatedClass;
+use ThinFrame\Annotations\Test\Sample\SampleAnnotatedClass;
 
 /**
  * Class AnnotationsTest
