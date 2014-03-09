@@ -9,8 +9,8 @@
 
 namespace ThinFrame\Annotations;
 
-use ThinFrame\Foundation\Constants\DataType;
-use ThinFrame\Foundation\Helpers\TypeCheck;
+use ThinFrame\Foundation\Constant\DataType;
+use ThinFrame\Foundation\Helper\TypeCheck;
 
 /**
  * Class Processor

@@ -51,7 +51,7 @@ class AnnotationsApplication extends AbstractApplication
     protected function setConfiguration(ContainerConfigurator $configurator)
     {
         $configurator
-            ->addResource('Resources/services/services.yml')
+            ->addResource('Resources/config/services.yml')
             ->addInjectionRule(
                 new TraitInjectionRule(
                     '\ThinFrame\Annotations\DependencyInjection\ProcessorAwareTrait',
