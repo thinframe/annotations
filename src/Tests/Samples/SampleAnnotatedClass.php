@@ -1,8 +1,6 @@
 <?php
 
 /**
- * src/Tests/Samples/SampleAnnotatedClass.php
- *
  * @author    Sorin Badea <sorin.badea91@gmail.com>
  * @license   MIT license (see the license file in the root directory)
  */
@@ -10,7 +8,7 @@
 namespace ThinFrame\Annotations\Tests\Samples;
 
 /**
- * Class SampleAnnotatedClass
+ * SampleAnnotatedClass
  *
  * @package        ThinFrame\Annotations\Tests\Samples
  *
@@ -26,7 +24,7 @@ class SampleAnnotatedClass
      * @visibility private
      * @var string
      */
-    private $someProperty;
+    protected $someProperty;
 
     /**
      * @Route {

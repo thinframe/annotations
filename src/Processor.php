@@ -1,8 +1,6 @@
 <?php
 
 /**
- * /src/Processor.php
- *
  * @author    Sorin Badea <sorin.badea91@gmail.com>
  * @license   MIT license (see the license file in the root directory)
  */
@@ -13,7 +11,7 @@ use ThinFrame\Foundation\Constant\DataType;
 use ThinFrame\Foundation\Helper\TypeCheck;
 
 /**
- * Class Processor
+ * Annotations Processor
  *
  * @package ThinFrame\Annotations
  * @since   0.2

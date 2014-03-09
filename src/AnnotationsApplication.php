@@ -1,8 +1,6 @@
 <?php
 
 /**
- * /src/AnnotationsApplication.php
- *
  * @author    Sorin Badea <sorin.badea91@gmail.com>
  * @license   MIT license (see the license file in the root directory)
  */
@@ -13,10 +11,11 @@ use PhpCollection\Map;
 use ThinFrame\Annotations\DependencyInjection\TaggedHandlerCompilerPass;
 use ThinFrame\Applications\AbstractApplication;
 use ThinFrame\Applications\DependencyInjection\ContainerConfigurator;
+use ThinFrame\Applications\DependencyInjection\InterfaceInjectionRule;
 use ThinFrame\Applications\DependencyInjection\TraitInjectionRule;
 
 /**
- * Class AnnotationsApplication
+ * AnnotationsApplication
  *
  * @package ThinFrame\Annotations
  * @since   0.2
@@ -55,6 +54,13 @@ class AnnotationsApplication extends AbstractApplication
             ->addInjectionRule(
                 new TraitInjectionRule(
                     '\ThinFrame\Annotations\DependencyInjection\ProcessorAwareTrait',
+                    'setProcessor',
+                    'annotations.processor'
+                )
+            )
+            ->addInjectionRule(
+                new InterfaceInjectionRule(
+                    '\ThinFrame\Annotations\DependencyInjection\ProcessorAwareInterface',
                     'setProcessor',
                     'annotations.processor'
                 )
