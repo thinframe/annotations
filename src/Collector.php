@@ -1,16 +1,14 @@
 <?php
 
 /**
- * /src/Collector.php
- *
- * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
  * @license   MIT license (see the license file in the root directory)
  */
 
 namespace ThinFrame\Annotations;
 
 /**
- * Class Collector
+ * Annotations Collector
  *
  * @package ThinFrame\Annotations
  * @since   0.2
@@ -91,7 +89,7 @@ class Collector
     public function getClassAnnotations($className)
     {
         if (!isset($this->classAnnotations[$className])) {
-            trY {
+            try {
                 $reflector                          = new \ReflectionClass($className);
                 $this->classAnnotations[$className] = $this->parseDocCommentBlock($reflector->getDocComment());
             } catch (\ReflectionException $e) {
@@ -105,8 +103,8 @@ class Collector
     /**
      * Parse given doc comment
      *
-     * @param      $docCommentBlock
-     * @param bool $remoteReserved
+     * @param string $docCommentBlock
+     * @param bool   $remoteReserved
      *
      * @return array
      */
@@ -168,19 +166,19 @@ class Collector
      */
     public function getMethodAnnotations($className, $methodName)
     {
-        $id = $className . '::' . $methodName;
-        if (!isset($this->methodAnnotations[$id])) {
+        $identifier = $className . '::' . $methodName;
+        if (!isset($this->methodAnnotations[$identifier])) {
             try {
-                $reflector                    = new \ReflectionMethod($className, $methodName);
-                $this->methodAnnotations[$id] = $this->parseDocCommentBlock(
+                $reflector                            = new \ReflectionMethod($className, $methodName);
+                $this->methodAnnotations[$identifier] = $this->parseDocCommentBlock(
                     $reflector->getDocComment()
                 );
             } catch (\ReflectionException $e) {
-                $this->methodAnnotations[$id] = [];
+                $this->methodAnnotations[$identifier] = [];
             }
         }
 
-        return $this->methodAnnotations[$id];
+        return $this->methodAnnotations[$identifier];
     }
 
     /**
@@ -193,18 +191,18 @@ class Collector
      */
     public function getPropertyAnnotations($className, $propertyName)
     {
-        $id = $className . '::' . $propertyName;
-        if (!isset($this->propertyAnnotations[$id])) {
+        $identifier = $className . '::' . $propertyName;
+        if (!isset($this->propertyAnnotations[$identifier])) {
             try {
-                $reflector                      = new \ReflectionProperty($className, $propertyName);
-                $this->propertyAnnotations[$id] = $this->parseDocCommentBlock(
+                $reflector                              = new \ReflectionProperty($className, $propertyName);
+                $this->propertyAnnotations[$identifier] = $this->parseDocCommentBlock(
                     $reflector->getDocComment()
                 );
             } catch (\ReflectionException $e) {
-                $this->propertyAnnotations[$id] = [];
+                $this->propertyAnnotations[$identifier] = [];
             }
         }
 
-        return $this->propertyAnnotations[$id];
+        return $this->propertyAnnotations[$identifier];
     }
 }

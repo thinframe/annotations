@@ -1,9 +1,7 @@
 <?php
 
 /**
- * /src/DependencyInjection/TaggedHandlerCompilerPass.php
- *
- * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
  * @license   MIT license (see the license file in the root directory)
  */
 
@@ -14,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Class TaggedHandlerCompilerPass
+ * TaggedHandlerCompilerPass
  *
  * @package ThinFrame\Annotations\DependencyInjection
  * @since   0.2
@@ -47,9 +45,8 @@ class TaggedHandlerCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        foreach ($container->findTaggedServiceIds(
-                     'thinframe.annotations.handler'
-                 ) as $handlerServiceId => $options) {
+        foreach ($container->findTaggedServiceIds('annotations.handler') as $handlerServiceId => $options) {
+            unset($options);
             $container->getDefinition($this->processorServiceId)->addMethodCall(
                 'addHandler',
                 [new Reference($handlerServiceId)]

@@ -1,21 +1,21 @@
 <?php
 
 /**
- * /src/AnnotationsApplication.php
- *
- * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
  * @license   MIT license (see the license file in the root directory)
  */
 
 namespace ThinFrame\Annotations;
 
+use PhpCollection\Map;
 use ThinFrame\Annotations\DependencyInjection\TaggedHandlerCompilerPass;
 use ThinFrame\Applications\AbstractApplication;
-use ThinFrame\Applications\DependencyInjection\AwareDefinition;
 use ThinFrame\Applications\DependencyInjection\ContainerConfigurator;
+use ThinFrame\Applications\DependencyInjection\InterfaceInjectionRule;
+use ThinFrame\Applications\DependencyInjection\TraitInjectionRule;
 
 /**
- * Class AnnotationsApplication
+ * AnnotationsApplication
  *
  * @package ThinFrame\Annotations
  * @since   0.2
@@ -23,54 +23,59 @@ use ThinFrame\Applications\DependencyInjection\ContainerConfigurator;
 class AnnotationsApplication extends AbstractApplication
 {
     /**
-     * Initialize configurator
-     *
-     * @param ContainerConfigurator $configurator
-     *
-     * @return mixed
-     */
-    public function initializeConfigurator(ContainerConfigurator $configurator)
-    {
-        $configurator->addCompilerPass(new TaggedHandlerCompilerPass('thinframe.annotations.processor'));
-
-        $configurator->addAwareDefinition(
-            new AwareDefinition(
-                '\ThinFrame\Annotations\DependencyInjection\ProcessorAwareTrait',
-                'setProcessor',
-                'thinframe.annotations.processor'
-            )
-        );
-    }
-
-    /**
      * Get application name
      *
      * @return string
      */
-    public function getApplicationName()
+    public function getName()
     {
-        return 'ThinFrameAnnotations';
+        return $this->reflector->getShortName();
     }
 
     /**
-     * Get configuration files
-     *
-     * @return mixed
-     */
-    public function getConfigurationFiles()
-    {
-        return [
-            'resources/services.yml'
-        ];
-    }
-
-    /**
-     * Get parent applications
+     * Get application parents
      *
      * @return AbstractApplication[]
      */
-    protected function getParentApplications()
+    public function getParents()
     {
         return [];
+    }
+
+    /**
+     * Set different options for the container configurator
+     *
+     * @param ContainerConfigurator $configurator
+     */
+    protected function setConfiguration(ContainerConfigurator $configurator)
+    {
+        $configurator
+            ->addResource('Resources/config/services.yml')
+            ->addInjectionRule(
+                new TraitInjectionRule(
+                    '\ThinFrame\Annotations\DependencyInjection\ProcessorAwareTrait',
+                    'setProcessor',
+                    'annotations.processor'
+                )
+            )
+            ->addInjectionRule(
+                new InterfaceInjectionRule(
+                    '\ThinFrame\Annotations\DependencyInjection\ProcessorAwareInterface',
+                    'setProcessor',
+                    'annotations.processor'
+                )
+            )
+            ->addCompilerPass(new TaggedHandlerCompilerPass('annotations.processor'));
+    }
+
+    /**
+     * Set application metadata
+     *
+     * @param Map $metadata
+     *
+     */
+    protected function setMetadata(Map $metadata)
+    {
+        //noop
     }
 }

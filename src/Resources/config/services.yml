@@ -1,0 +1,10 @@
+parameters:
+    annotations.processor.class: 'ThinFrame\Annotations\Processor'
+    annotations.collector.class: 'ThinFrame\Annotations\Collector'
+services:
+    annotations.processor:
+        class: '%annotations.processor.class%'
+        arguments: ['@annotations.collector']
+
+    annotations.collector:
+        class: '%annotations.collector.class%'

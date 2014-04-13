@@ -10,25 +10,19 @@ namespace ThinFrame\Annotations\DependencyInjection;
 use ThinFrame\Annotations\Processor;
 
 /**
- * ProcessorAwareTrait - should be used by classes that depends on the Processor
+ * ProcessorAwareInterface - should be implemented by classes that depends on the Processor
  *
  * @package ThinFrame\Annotations\DependencyInjection
- * @since   0.2
+ * @since   0.3
  */
-trait ProcessorAwareTrait
+interface ProcessorAwareInterface
 {
     /**
-     * @var Processor
-     */
-    protected $processor;
-
-    /**
-     * Attach processor instance
+     * Attach the processor to the current instance
      *
      * @param Processor $processor
+     *
+     * @return $this
      */
-    public function setProcessor(Processor $processor)
-    {
-        $this->processor = $processor;
-    }
+    public function setProcessor(Processor $processor);
 }
